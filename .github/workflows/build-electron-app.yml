@@ -13,9 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: List Available Node Versions
-        run: nvm list available
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
