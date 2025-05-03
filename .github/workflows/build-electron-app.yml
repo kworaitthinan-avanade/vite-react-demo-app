@@ -28,7 +28,7 @@ jobs:
 
       # Build the full app: Electron backend and Vite frontend
       - name: Build app
-        run: npm run build
+        run: npm run build -- --publish=never
 
       # Upload the built .exe installer
       - name: Upload installer artifact

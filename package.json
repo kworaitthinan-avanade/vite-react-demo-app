@@ -42,7 +42,6 @@
   },
   "win": {
     "target": "nsis"
-  },
-  "publish": "never"
+  }
 }
 }
