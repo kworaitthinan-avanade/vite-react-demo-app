@@ -1,0 +1,47 @@
+{
+  "name": "vite-react-demo-app",
+  "version": "1.0.0",
+  "description": "Create node\r ```\r nvm list available\r nvm install 22.15.0\r nvm use 22.15.0\r node -v\r npm -v\r ```\r Create frontend react vite\r ```root\r npm create vite@latest frontend -- --template react-ts\r ```",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "concurrently -k \"npm run dev --prefix frontend\" \"wait-on http://localhost:5173 && npm run start:electron\"",
+    "start:electron": "npm run build:electron && electron dist/main.js",
+    "build:electron": "esbuild main.ts --bundle --platform=node --outfile=dist/main.js --external:electron && esbuild preload.ts --bundle --platform=node --outfile=dist/preload.js --external:electron",
+    "build:frontend": "npm run build --prefix frontend",
+    "build": "npm run build:electron && npm run build:frontend && electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jingwora/vite-react-demo-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jingwora/vite-react-demo-app/issues"
+  },
+  "homepage": "https://github.com/jingwora/vite-react-demo-app#readme",
+  "devDependencies": {
+    "@types/electron": "^1.6.12",
+    "concurrently": "^9.1.2",
+    "electron": "^36.1.0",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.3",
+    "wait-on": "^8.0.3"
+  },
+"build": {
+  "appId": "react.electron.app",
+  "productName": "react-electron-app",
+  "files": [
+    "dist/**/*",
+    "frontend/dist/**/*",
+    "package.json"
+  ],
+  "directories": {
+    "buildResources": "build"
+  },
+  "win": {
+    "target": "nsis"
+  }
+}
+}
