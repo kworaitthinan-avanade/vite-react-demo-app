@@ -18,12 +18,19 @@ jobs:
         with:
           node-version: 22.15.0
 
-      - name: Install dependencies
+      # Install root dependencies (Electron, builder, etc.)
+      - name: Install root dependencies
         run: npm install
 
+      # Install frontend dependencies (React, Vite, TS)
+      - name: Install frontend dependencies
+        run: npm install --prefix frontend
+
+      # Build the full app: Electron backend and Vite frontend
       - name: Build app
         run: npm run build
 
+      # Upload the built .exe installer
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
         with:
